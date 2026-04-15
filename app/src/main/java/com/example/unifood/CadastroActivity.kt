@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity // 1. Importação necessária
 
 
-class MainActivityB : AppCompatActivity() {
+class CadastroActivity : AppCompatActivity() {
 
     private lateinit var etNomeCompleto: EditText
     private lateinit var etEmailIns: EditText
@@ -20,7 +20,7 @@ class MainActivityB : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main_b)
+        setContentView(R.layout.activity_cadastro)
 
         // 4. Você precisa inicializar as variáveis ligando-as ao XML
         etNomeCompleto = findViewById(R.id.etNomeCompleto)

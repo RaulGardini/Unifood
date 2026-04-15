@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         tvCadastro.setOnClickListener {
             Toast.makeText(this, "Tela de cadastro", Toast.LENGTH_SHORT).show()
-            val Intent = Intent(this, MainActivityB::class.java)
+            val Intent = Intent(this, CadastroActivity::class.java)
             startActivity(Intent)
         }
 
