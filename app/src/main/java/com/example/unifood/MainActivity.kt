@@ -1,5 +1,6 @@
 package com.example.unifood
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -35,7 +36,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvCadastro.setOnClickListener {
-            Toast.makeText(this, "Tela de cadastro em breve", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Tela de cadastro", Toast.LENGTH_SHORT).show()
+            val Intent = Intent(this, MainActivityB::class.java)
+            startActivity(Intent)
         }
 
         tvEsqueci.setOnClickListener {
