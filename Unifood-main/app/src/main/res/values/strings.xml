@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Unifood</string>
+    <string name="slogan">Comida no campus, sem fila</string>
+    <string name="welcome_title">Bem vindo ao UniFood</string>
+    <string name="welcome_subtitle">Faça seu login para continuar</string>
+    <string name="label_email">Email institucional</string>
+    <string name="label_password">Senha</string>
+    <string name="forgot_password">Esqueci minha senha</string>
+    <string name="invalid_credentials">Email ou senha inválidos</string>
+    <string name="enter">Entrar</string>
+    <string name="no_account">Não tem conta? </string>
+    <string name="sign_up">Cadastrar-se</string>
+</resources>
