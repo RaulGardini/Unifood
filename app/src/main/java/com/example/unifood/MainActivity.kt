@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         tvEsqueci.setOnClickListener {
-            Toast.makeText(this, "Recuperação de senha em breve", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, RecuperarSenhaActivity::class.java)
+            startActivity(intent)
         }
     }
 
