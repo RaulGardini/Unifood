@@ -8,6 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity // 1. Importação necessária
 
+// 2. Arquivo Original
+
 
 class CadastroActivity : AppCompatActivity() {
 
