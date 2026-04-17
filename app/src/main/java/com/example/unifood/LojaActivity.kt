@@ -10,9 +10,6 @@ class LojaActivity: AppCompatActivity(){
     private lateinit var tvVoltar: TextView
     private lateinit var tvAdd1: TextView
     private lateinit var tvAdd2: TextView
-    private lateinit var tvLanches: TextView
-    private lateinit var tvBebidas: TextView
-    private lateinit var tvDoces: TextView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,8 +21,7 @@ class LojaActivity: AppCompatActivity(){
         tvAdd2 = findViewById(R.id.tvAdd2)
 
         tvVoltar.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
 
