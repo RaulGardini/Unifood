@@ -57,7 +57,9 @@ class HomeActivity : AppCompatActivity() {
             indicatorInicio.setBackgroundColor(android.graphics.Color.TRANSPARENT)
             indicatorPedidos.setBackgroundColor(android.graphics.Color.TRANSPARENT)
             indicatorPerfil.setBackgroundResource(R.color.orange)
-            Toast.makeText(this, "Perfil - Em breve", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
         }
     }
 }
