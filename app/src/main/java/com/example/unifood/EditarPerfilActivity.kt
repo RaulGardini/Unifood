@@ -1,5 +1,6 @@
 package com.example.unifood
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -36,6 +37,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Perfil atualizado!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PerfilActivity::class.java)
         }
     }
 }
