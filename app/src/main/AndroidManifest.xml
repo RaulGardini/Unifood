@@ -13,15 +13,23 @@
         android:theme="@style/Theme.Unifood"
         tools:targetApi="31">
 
+
+
+
+
         <activity android:name=".HomeActivity"/>
         <activity android:name=".RecuperarSenhaActivity"/>
         <activity android:name=".EditarPerfilActivity"/>
         <activity android:name=".CadastroActivity"/>
         <activity android:name=".LojaActivity"/>
         <activity android:name=".PerfilActivity"/>
+        <activity android:name=".AlterarSenhaActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+
+
+
 
 
 
