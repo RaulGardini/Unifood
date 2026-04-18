@@ -62,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Buscar restaurantes ou pratos..."
-                        android:textColor="@color/text_muted"
+                        android:textColor="@color/text_screach"
                         android:textSize="14sp"/>
 
                 </LinearLayout>
@@ -375,8 +375,8 @@
 
             <View
                 android:id="@+id/indicatorInicio"
-                android:layout_width="40dp"
-                android:layout_height="3dp"
+                android:layout_width="60dp"
+                android:layout_height="5dp"
                 android:background="@color/orange"
                 android:layout_marginBottom="4dp"/>
 
@@ -385,7 +385,7 @@
                 android:layout_height="wrap_content"
                 android:text="Inicio"
                 android:textColor="@color/orange"
-                android:textSize="13sp"/>
+                android:textSize="19sp"/>
 
         </LinearLayout>
 
@@ -399,8 +399,8 @@
 
             <View
                 android:id="@+id/indicatorPedidos"
-                android:layout_width="40dp"
-                android:layout_height="3dp"
+                android:layout_width="60dp"
+                android:layout_height="5dp"
                 android:background="@android:color/transparent"
                 android:layout_marginBottom="4dp"/>
 
@@ -410,7 +410,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pedidos"
                 android:textColor="@color/text_muted"
-                android:textSize="13sp"/>
+                android:textSize="19sp"/>
 
         </LinearLayout>
 
@@ -424,8 +424,8 @@
 
             <View
                 android:id="@+id/indicatorPerfil"
-                android:layout_width="40dp"
-                android:layout_height="3dp"
+                android:layout_width="60dp"
+                android:layout_height="5dp"
                 android:background="@android:color/transparent"
                 android:layout_marginBottom="4dp"/>
 
@@ -435,7 +435,7 @@
                 android:layout_height="wrap_content"
                 android:text="Perfil"
                 android:textColor="@color/text_muted"
-                android:textSize="13sp"/>
+                android:textSize="19sp"/>
 
         </LinearLayout>
 
