@@ -41,7 +41,8 @@ class PerfilActivity : AppCompatActivity() {
         }
 
         tvAlterarSenha.setOnClickListener {
-
+            val intent = Intent(this, AlterarSenhaActivity::class.java)
+            startActivity(intent)
         }
         tvNotificacoes.setOnClickListener {
 

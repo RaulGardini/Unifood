@@ -38,6 +38,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         } else {
             Toast.makeText(this, "Perfil atualizado!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, PerfilActivity::class.java)
+            startActivity(intent)
         }
     }
 }
