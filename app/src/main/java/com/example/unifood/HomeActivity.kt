@@ -47,10 +47,8 @@ class HomeActivity : AppCompatActivity() {
         }
 
         navPedidos.setOnClickListener {
-            indicatorInicio.setBackgroundColor(android.graphics.Color.TRANSPARENT)
-            indicatorPedidos.setBackgroundResource(R.color.orange)
-            indicatorPerfil.setBackgroundColor(android.graphics.Color.TRANSPARENT)
-            Toast.makeText(this, "Pedidos - Em breve", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PedidosActivity::class.java)
+            startActivity(intent)
         }
 
         navPerfil.setOnClickListener {
