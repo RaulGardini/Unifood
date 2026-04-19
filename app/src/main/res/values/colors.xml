@@ -9,7 +9,8 @@
     <color name="orange_dark">#D85A15</color>
     <color name="bg_gray">#F2F2F2</color>
     <color name="text_dark">#222222</color>
-    <color name="text_muted">#777777</color>
+    <color name="text_screach">#80FFFFFF</color>
+    <color name="text_muted">#5D5D5D</color>
     <color name="input_border">#E0E0E0</color>
     <color name="error_red">#E53935</color>
 </resources>
