@@ -45,6 +45,8 @@ class PerfilActivity : AppCompatActivity() {
             startActivity(intent)
         }
         tvNotificacoes.setOnClickListener {
+            val intent = Intent(this, NotificacoesActivity::class.java)
+            startActivity(intent)
 
         }
         btnRoboChat.setOnClickListener {
