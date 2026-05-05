@@ -3,7 +3,9 @@ package com.example.unifood
 
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,7 @@ class GerenciarEstabelecimentosActivity : AppCompatActivity() {
         val btnDelete1 = findViewById<ImageButton>(R.id.btnDelete1)
         val btnDelete2 = findViewById<ImageButton>(R.id.btnDelete2)
         val btnVoltar = findViewById<TextView>(R.id.btnVoltar)
+        val btnAdicionar = findViewById<Button>(R.id.btnAdicionar)
 
 
         btnDelete1.setOnClickListener {
@@ -29,6 +32,10 @@ class GerenciarEstabelecimentosActivity : AppCompatActivity() {
         }
         btnVoltar.setOnClickListener() {
             finish()
+        }
+        btnAdicionar.setOnClickListener {
+            val intent = Intent(this, NovoEstabelecimentoActivity::class.java)
+            startActivity(intent)
         }
 
     }

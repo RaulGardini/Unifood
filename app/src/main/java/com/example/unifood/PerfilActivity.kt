@@ -58,7 +58,8 @@ class PerfilActivity : AppCompatActivity() {
         }
 
         tvTelaPedidos.setOnClickListener {
-
+            val intent = Intent(this, PedidosActivity::class.java)
+            startActivity(intent)
         }
         tvTelaHome.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
