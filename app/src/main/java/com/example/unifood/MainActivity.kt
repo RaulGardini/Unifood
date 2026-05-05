@@ -50,23 +50,21 @@ class MainActivity : AppCompatActivity() {
     private fun validarDados() {
         val email = etEmail.text.toString().trim()
         val senha = etSenha.text.toString()
-        val emailAdmin = etEmail.text.toString().trim()
-        val senhaAdmin = etSenha.text.toString().trim()
-
 
         if (email == "aluno@unifor.br" && senha == "123456") {
             tvErro.visibility = android.view.View.GONE
             Toast.makeText(this, "Login válido com sucesso!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
-        } else {
-            tvErro.visibility = android.view.View.VISIBLE
-        }
-
-        if (emailAdmin == "admin" && senhaAdmin == "123456") {
+        } else if (email == "admin@unifor.br" && senha == "123456") {
             tvErro.visibility = android.view.View.GONE
-            Toast.makeText(this, "Login válido com sucesso!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Login Admin com sucesso!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, PainelAdministrativoActivity::class.java)
+            startActivity(intent)
+        } else if (email == "lojista@unifor.br" && senha == "123456") {
+            tvErro.visibility = android.view.View.GONE
+            Toast.makeText(this, "Login Lojista com sucesso!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, EditarPerfilLogistaActivity::class.java)
             startActivity(intent)
         } else {
             tvErro.visibility = android.view.View.VISIBLE
