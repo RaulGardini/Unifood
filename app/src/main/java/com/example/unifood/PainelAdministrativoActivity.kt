@@ -45,8 +45,8 @@ class PainelAdministrativoActivity : AppCompatActivity() {
 
 
         navGerenEstabe.setOnClickListener {
-         //   val intent = Intent(this, EstabelecimentosActivity::class.java)
-         //   startActivity(intent)
+            val intent = Intent(this, GerenciarEstabelecimentosActivity::class.java)
+            startActivity(intent)
         }
 
 
