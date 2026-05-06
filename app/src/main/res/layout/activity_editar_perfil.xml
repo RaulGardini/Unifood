@@ -9,13 +9,41 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="@color/navy"
-        android:gravity="center"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                app:cardBackgroundColor="#FF6B00"
+                app:cardCornerRadius="22.5dp"
+                app:cardElevation="2dp">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:padding="10dp"
+                    android:scaleType="centerInside"
+                    android:src="@android:drawable/ic_menu_revert"
+                    app:tint="#FFFFFF"
+                    android:contentDescription="Voltar" />
+            </androidx.cardview.widget.CardView>
+        </RelativeLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:text="Editar Perfil"
             android:textColor="@color/white"
             android:textSize="28sp"

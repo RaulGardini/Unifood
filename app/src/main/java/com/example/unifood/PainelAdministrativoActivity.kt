@@ -20,22 +20,15 @@ class PainelAdministrativoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_paineladmin)
 
-
         btnLogout = findViewById(R.id.btnLogout)
-
-
         tvContUsuario = findViewById(R.id.tvContUsuario)
         tvContEstabe = findViewById(R.id.tvContEstabe)
-
-
         navGerenEstabe = findViewById(R.id.navGerenEstabe)
         navGerenUsuario = findViewById(R.id.navGerenUsuario)
         navRelatorio = findViewById(R.id.navRelatorio)
 
-
         tvContUsuario.text = "1.540"
         tvContEstabe.text = "2"
-
 
         btnLogout.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -43,22 +36,19 @@ class PainelAdministrativoActivity : AppCompatActivity() {
             finish()
         }
 
-
         navGerenEstabe.setOnClickListener {
             val intent = Intent(this, GerenciarEstabelecimentosActivity::class.java)
             startActivity(intent)
         }
-
 
         navGerenUsuario.setOnClickListener {
             val intent = Intent(this, AdminGenUsuarioActivity::class.java)
             startActivity(intent)
         }
 
-
         navRelatorio.setOnClickListener {
-//            val intent = Intent(this, RelatoriosActivity::class.java)
-//            startActivity(intent)
+            val intent = Intent(this, RelatoriosActivity::class.java)
+            startActivity(intent)
         }
     }
 }

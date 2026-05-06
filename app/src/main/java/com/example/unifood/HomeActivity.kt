@@ -47,7 +47,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         navPedidos.setOnClickListener {
-            val intent = Intent(this, PedidosActivity::class.java)
+            val intent = Intent(this, CarrinhoActivity::class.java)
             startActivity(intent)
         }
 

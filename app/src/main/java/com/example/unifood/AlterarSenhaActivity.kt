@@ -67,8 +67,9 @@ class AlterarSenhaActivity : AppCompatActivity() {
         }
 
         tvTelaPedidos.setOnClickListener {
-            // val intent = Intent(this, PedidosActivity::class.java)
-            // startActivity(intent)
+            val intent = Intent(this, PedidosActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 }
