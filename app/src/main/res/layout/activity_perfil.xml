@@ -103,12 +103,15 @@
         app:layout_constraintTop_toBottomOf="@id/header">
 
         <LinearLayout
+            android:id="@+id/cardEditarPerfil"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_white_card"
             android:elevation="3dp"
             android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
             android:padding="16dp">
             <LinearLayout
                 android:layout_width="0dp"
@@ -139,12 +142,15 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/cardAlterarSenha"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:layout_marginBottom="12dp"
             android:background="@drawable/bg_white_card"
             android:elevation="3dp"
             android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
             android:padding="16dp">
             <LinearLayout
                 android:layout_width="0dp"
@@ -175,11 +181,14 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/cardNotificacoes"
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:background="@drawable/bg_white_card"
             android:elevation="3dp"
             android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
             android:padding="16dp">
             <LinearLayout
                 android:layout_width="0dp"
@@ -208,6 +217,45 @@
                 android:src="@android:drawable/ic_media_play"
                 app:tint="#D3D3D3" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cardFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/bg_white_card"
+            android:elevation="3dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="16dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enviar Feedback"
+                    android:textColor="#102E4A"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Avalie o aplicativo"
+                    android:textColor="#888888"
+                    android:textSize="12sp" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@android:drawable/ic_media_play"
+                app:tint="#D3D3D3" />
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

@@ -17,6 +17,14 @@
 
 
         <activity android:name=".EditarPerfilLogistaActivity"/>
+        <activity android:name=".NovoItemCardapioActivity"/>
+        <activity android:name=".EditarItemCardapioActivity"/>
+        <activity android:name=".CardapioActivity"/>
+        <activity android:name=".LojistaActivity"/>
+        <activity android:name=".FeedbackActivity"/>
+        <activity android:name=".ConfigNotificacoesActivity"/>
+        <activity android:name=".ChatBotActivity"/>
+        <activity android:name=".CarrinhoActivity"/>
         <activity android:name=".PedidosActivity"/>
         <activity android:name=".HomeActivity"/>
         <activity android:name=".RecuperarSenhaActivity"/>
@@ -30,6 +38,7 @@
         <activity android:name=".AdminGenUsuarioActivity"/>
         <activity android:name=".GerenciarEstabelecimentosActivity"/>
         <activity android:name=".NovoEstabelecimentoActivity"/>
+        <activity android:name=".RelatoriosActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="false" />

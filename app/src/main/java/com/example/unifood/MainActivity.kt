@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         } else if (email == "lojista@unifor.br" && senha == "123456") {
             tvErro.visibility = android.view.View.GONE
             Toast.makeText(this, "Login Lojista com sucesso!", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, EditarPerfilLogistaActivity::class.java)
+            val intent = Intent(this, LojistaActivity::class.java)
             startActivity(intent)
         } else {
             tvErro.visibility = android.view.View.VISIBLE
