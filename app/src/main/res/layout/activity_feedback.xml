@@ -231,7 +231,7 @@
                 android:layout_marginBottom="20dp"/>
 
             <!-- BOTÃO ENVIAR -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnEnviar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

@@ -17,8 +17,6 @@ class CarrinhoActivity : AppCompatActivity() {
 
         val btnPedidos = findViewById<ImageButton>(R.id.btnPedidos)
         val btnFinalizar = findViewById<Button>(R.id.btnFinalizar)
-        val btnAgendar = findViewById<Button>(R.id.btnAgendar)
-
         val btnCartao = findViewById<TextView>(R.id.btnCartao)
         val btnPix = findViewById<TextView>(R.id.btnPix)
         val btnDinheiro = findViewById<TextView>(R.id.btnDinheiro)
@@ -36,10 +34,6 @@ class CarrinhoActivity : AppCompatActivity() {
             Toast.makeText(this, "Pedido finalizado!", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, PedidosActivity::class.java)
             startActivity(intent)
-        }
-
-        btnAgendar.setOnClickListener {
-            Toast.makeText(this, "Agendar pedido - Em breve", Toast.LENGTH_SHORT).show()
         }
 
         btnCartao.setOnClickListener {

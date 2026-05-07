@@ -12,15 +12,18 @@
         android:background="@drawable/bg_header"
         android:paddingHorizontal="16dp">
 
-        <Button
+        <TextView
             android:id="@+id/btnVoltar"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="start|center_vertical"
-            android:background="@drawable/bg_botao_voltar"
+            android:background="@drawable/bg_btn_finalizar"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="6dp"
             android:text="Voltar"
-            android:textAllCaps="false"
-            android:textColor="#FFFFFF" />
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"

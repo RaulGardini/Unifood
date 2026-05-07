@@ -250,7 +250,7 @@
                 android:layout_marginBottom="20dp"/>
 
             <!-- BOTÃO -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSalvar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"

@@ -37,7 +37,7 @@
             android:orientation="vertical">
 
             <!-- BOTÃO ADICIONAR AO CARDÁPIO -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnAdicionarCardapio"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"

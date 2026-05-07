@@ -1,8 +1,14 @@
 package com.example.unifood
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
+import android.view.Window
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 
@@ -27,9 +33,9 @@ class PedidosActivity : AppCompatActivity() {
         }
 
         navPedidos.setOnClickListener {
-            indicatorInicio.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+            indicatorInicio.setBackgroundColor(Color.TRANSPARENT)
             indicatorPedidos.setBackgroundResource(R.color.orange)
-            indicatorPerfil.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+            indicatorPerfil.setBackgroundColor(Color.TRANSPARENT)
         }
 
         navPerfil.setOnClickListener {
@@ -37,5 +43,54 @@ class PedidosActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        val btnCancelar = findViewById<View>(R.id.btnCancelar)
+        btnCancelar.setOnClickListener {
+            showCancelarDialog()
+        }
+
+        showAvaliacaoDialog()
+    }
+
+    private fun showAvaliacaoDialog() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_avaliacao)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.85).toInt(),
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(true)
+
+        dialog.findViewById<View>(R.id.btnEnviar).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (dialog.isShowing) {
+                dialog.dismiss()
+            }
+        }, 3000)
+    }
+
+    private fun showCancelarDialog() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_cancelar)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window?.setLayout(
+            (resources.displayMetrics.widthPixels * 0.85).toInt(),
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(true)
+
+        dialog.findViewById<View>(R.id.btnVoltar).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 }
