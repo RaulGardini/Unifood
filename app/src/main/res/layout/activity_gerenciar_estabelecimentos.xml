@@ -51,14 +51,15 @@
     </RelativeLayout>
 
     <!-- BOTÃO ADICIONAR -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnAdicionar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="Adicionar estabelecimento"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
-        android:backgroundTint="#FF6B35"
+        android:textAllCaps="false"
+        android:background="@drawable/bg_btn_finalizar"
         android:layout_margin="16dp"
         android:layout_marginBottom="8dp"/>
 

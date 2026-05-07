@@ -14,22 +14,6 @@
         android:padding="20dp">
 
         <!-- Avatar pequeno -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            app:cardCornerRadius="20dp"
-            app:cardBackgroundColor="#E0E0E0"
-            app:cardElevation="2dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="🏪"
-                android:textSize="18sp"/>
-        </androidx.cardview.widget.CardView>
 
         <!-- Logout -->
         <TextView
@@ -37,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
+            android:layout_alignParentTop="true"
             android:background="@drawable/bg_btn_finalizar"
             android:paddingHorizontal="14dp"
             android:paddingVertical="6dp"
@@ -382,7 +366,7 @@
                     android:orientation="horizontal"
                     android:gravity="center">
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnRecusar"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
@@ -390,11 +374,11 @@
                         android:layout_marginEnd="10dp"
                         android:background="@drawable/bg_btn_recusar"
                         android:text="Recusar"
-                        android:textColor="#666666"
+                        android:textColor="#D32F2F"
                         android:textSize="13sp"
                         android:textAllCaps="false"/>
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnAceitar"
                         android:layout_width="0dp"
                         android:layout_height="40dp"

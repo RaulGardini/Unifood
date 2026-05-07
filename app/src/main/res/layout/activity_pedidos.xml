@@ -210,12 +210,14 @@
             </LinearLayout>
 
             <!-- BOTÃO -->
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnCancelar"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:text="Cancelar pedido"
-                android:textColor="#FF6B00"
+                android:textColor="#D32F2F"
                 android:background="@drawable/bg_botao_cancelar"
+                android:textAllCaps="false"
                 android:layout_marginTop="20dp"/>
 
         </LinearLayout>

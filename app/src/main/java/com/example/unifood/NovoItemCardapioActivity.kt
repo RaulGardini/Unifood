@@ -1,8 +1,12 @@
 package com.example.unifood
 
-import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.View
+import android.view.Window
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -30,22 +34,29 @@ class NovoItemCardapioActivity : AppCompatActivity() {
         }
 
         btnAddCategoria.setOnClickListener {
-            val input = EditText(this)
-            input.hint = "Digite o nome da nova categoria:"
-            input.setPadding(40, 30, 40, 30)
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.dialog_nova_categoria)
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window?.setLayout(
+                (resources.displayMetrics.widthPixels * 0.85).toInt(),
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            dialog.setCancelable(true)
 
-            AlertDialog.Builder(this)
-                .setTitle("Nova categoria")
-                .setView(input)
-                .setPositiveButton("Adicionar categoria") { dialog, _ ->
-                    val nome = input.text.toString().trim()
-                    if (nome.isNotEmpty()) {
-                        Toast.makeText(this, "Categoria '$nome' adicionada!", Toast.LENGTH_SHORT).show()
-                    }
-                    dialog.dismiss()
+            dialog.findViewById<View>(R.id.btnVoltar).setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.findViewById<View>(R.id.btnAdicionarCategoria).setOnClickListener {
+                val nome = dialog.findViewById<EditText>(R.id.etNomeCategoria).text.toString().trim()
+                if (nome.isNotEmpty()) {
+                    Toast.makeText(this, "Categoria '$nome' adicionada!", Toast.LENGTH_SHORT).show()
                 }
-                .setNegativeButton("Voltar") { dialog, _ -> dialog.dismiss() }
-                .create().show()
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
 
         navDashboard.setOnClickListener {
