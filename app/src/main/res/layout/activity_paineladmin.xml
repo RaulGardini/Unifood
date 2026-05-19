@@ -188,11 +188,20 @@
 
             <TextView
                 android:id="@+id/tvGerenEstabe"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Gerenciar estabelecimentos"
                 android:textColor="#123B63"
                 android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:textColor="#123B63"
+                android:alpha="0.3"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -206,11 +215,20 @@
 
             <TextView
                 android:id="@+id/tvGerenUsuario"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Gerenciar usuários"
                 android:textColor="#123B63"
                 android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:textColor="#123B63"
+                android:alpha="0.3"
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -223,11 +241,20 @@
 
             <TextView
                 android:id="@+id/tvRelatorio"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="Relatórios"
                 android:textColor="#123B63"
                 android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=">"
+                android:textColor="#123B63"
+                android:alpha="0.3"
+                android:textSize="20sp" />
         </LinearLayout>
 
     </LinearLayout>

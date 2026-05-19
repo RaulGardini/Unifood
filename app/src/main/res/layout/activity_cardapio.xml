@@ -200,6 +200,7 @@
                             android:layout_marginEnd="6dp"/>
 
                         <TextView
+                            android:id="@+id/btnExcluirItem1"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:background="@drawable/bg_btn_delete_item"
@@ -302,6 +303,7 @@
                             android:layout_marginEnd="6dp"/>
 
                         <TextView
+                            android:id="@+id/btnExcluirItem2"
                             android:layout_width="36dp"
                             android:layout_height="36dp"
                             android:background="@drawable/bg_btn_delete_item"

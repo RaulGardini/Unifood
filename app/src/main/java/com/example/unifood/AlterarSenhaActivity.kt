@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,7 +18,7 @@ class AlterarSenhaActivity : AppCompatActivity() {
     private lateinit var edtConfirmarSenha: EditText
 
 
-    private lateinit var btnBack: ImageButton
+    private lateinit var btnBack: TextView
     private lateinit var btnAtualizarSenha: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
