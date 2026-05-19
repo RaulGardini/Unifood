@@ -71,6 +71,17 @@
             android:inputType="textEmailAddress"
             android:paddingHorizontal="12dp" />
 
+        <TextView
+            android:id="@+id/tvErroRec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:text="@string/error_empty_email"
+            android:textColor="@color/error_red"
+            android:textSize="12sp"
+            android:visibility="gone" />
+
         <Button
             android:id="@+id/btnEnviarLink"
             android:layout_width="match_parent"

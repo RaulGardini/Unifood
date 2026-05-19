@@ -7,6 +7,8 @@
     <string name="label_password">Senha</string>
     <string name="forgot_password">Esqueci minha senha</string>
     <string name="invalid_credentials">Email ou senha inválidos</string>
+    <string name="error_empty_email">Digite seu email institucional</string>
+    <string name="error_invalid_email">Digite um email válido</string>
     <string name="enter">Entrar</string>
     <string name="no_account">Não tem conta? </string>
     <string name="sign_up">Cadastrar-se</string>
