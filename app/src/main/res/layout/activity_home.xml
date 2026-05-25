@@ -26,9 +26,10 @@
                 android:paddingBottom="32dp">
 
                 <TextView
+                    android:id="@+id/tvSaudacao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ola, Narak"
+                    android:text="Olá"
                     android:textColor="#CCCCCC"
                     android:textSize="14sp"
                     android:layout_marginBottom="4dp"/>
@@ -58,12 +59,19 @@
                         android:background="@drawable/bg_circle"
                         android:layout_marginEnd="12dp"/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Buscar restaurantes ou pratos..."
-                        android:textColor="@color/text_screach"
-                        android:textSize="14sp"/>
+                    <EditText
+                        android:id="@+id/etBusca"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:hint="Buscar restaurantes ou pratos..."
+                        android:textColorHint="@color/text_screach"
+                        android:textColor="@color/text_dark"
+                        android:textSize="14sp"
+                        android:inputType="text"
+                        android:imeOptions="actionSearch"
+                        android:maxLines="1"/>
 
                 </LinearLayout>
 
@@ -77,6 +85,7 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tvFiltroTodos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_category_selected"
@@ -89,6 +98,7 @@
                     android:layout_marginEnd="8dp"/>
 
                 <TextView
+                    android:id="@+id/tvFiltroLanches"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_category_unselected"
@@ -101,6 +111,7 @@
                     android:layout_marginEnd="8dp"/>
 
                 <TextView
+                    android:id="@+id/tvFiltroSaudavel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/bg_category_unselected"
@@ -146,211 +157,27 @@
 
             </LinearLayout>
 
-            <!-- ROW 1 -->
+            <!-- LISTA DE LOJAS -->
             <LinearLayout
+                android:id="@+id/containerLojas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginBottom="12dp">
+                android:orientation="vertical"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginBottom="16dp"/>
 
-                <!-- CARD 1 -->
-                <LinearLayout
-                    android:id="@+id/cardLoja1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_card_store"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:elevation="2dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="90dp"
-                        android:background="@drawable/bg_logo_yellow"
-                        android:gravity="center"
-                        android:text="Logo da loja"
-                        android:textColor="@color/navy"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kalzone"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_dark"
-                        android:layout_marginTop="8dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="15-20 minutos"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Centro de convivência"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-                <!-- CARD 2 -->
-                <LinearLayout
-                    android:id="@+id/cardLoja2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_card_store"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:layout_marginStart="8dp"
-                    android:elevation="2dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="90dp"
-                        android:background="@drawable/bg_logo_red"
-                        android:gravity="center"
-                        android:text="Logo da loja"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nome do restaurante"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_dark"
-                        android:layout_marginTop="8dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10-15 minutos"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Centro de convivência"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <!-- ROW 2 -->
-            <LinearLayout
+            <!-- MENSAGEM VAZIA -->
+            <TextView
+                android:id="@+id/tvVazio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:layout_marginBottom="16dp">
-
-                <!-- CARD 3 -->
-                <LinearLayout
-                    android:id="@+id/cardLoja3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_card_store"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:elevation="2dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="90dp"
-                        android:background="@drawable/bg_logo_yellow"
-                        android:gravity="center"
-                        android:text="Logo da loja"
-                        android:textColor="@color/navy"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Kalzone"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_dark"
-                        android:layout_marginTop="8dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="15-20 minutos"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Centro de convivência"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-                <!-- CARD 4 -->
-                <LinearLayout
-                    android:id="@+id/cardLoja4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_card_store"
-                    android:orientation="vertical"
-                    android:padding="12dp"
-                    android:layout_marginStart="8dp"
-                    android:elevation="2dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="90dp"
-                        android:background="@drawable/bg_logo_red"
-                        android:gravity="center"
-                        android:text="Logo da loja"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nome do restaurante"
-                        android:textStyle="bold"
-                        android:textColor="@color/text_dark"
-                        android:layout_marginTop="8dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10-15 minutos"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"
-                        android:layout_marginTop="2dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Centro de convivência"
-                        android:textColor="@color/text_muted"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
+                android:text="Nenhum estabelecimento encontrado"
+                android:textColor="@color/text_muted"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:padding="32dp"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

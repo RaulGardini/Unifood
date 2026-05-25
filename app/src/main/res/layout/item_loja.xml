@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_store"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:layout_margin="6dp"
+    android:elevation="2dp">
+
+    <TextView
+        android:id="@+id/tvLogoPlaceholder"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/bg_logo_yellow"
+        android:gravity="center"
+        android:text="Logo da loja"
+        android:textColor="@color/navy"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/tvNomeLoja"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome da loja"
+        android:textStyle="bold"
+        android:textColor="@color/text_dark"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/tvTempoEntrega"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="15-20 minutos"
+        android:textColor="@color/text_muted"
+        android:textSize="12sp"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/tvLocalizacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Localização"
+        android:textColor="@color/text_muted"
+        android:textSize="12sp"/>
+
+</LinearLayout>
