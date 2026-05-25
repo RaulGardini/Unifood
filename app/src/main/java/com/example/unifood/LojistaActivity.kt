@@ -8,8 +8,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LojistaActivity : AppCompatActivity() {
+
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +26,10 @@ class LojistaActivity : AppCompatActivity() {
         val navCardapio = findViewById<LinearLayout>(R.id.navCardapio)
         val navDashboard = findViewById<LinearLayout>(R.id.navDashboard)
 
+        carregarDadosEstabelecimento()
+
         btnLogout.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
+            auth.signOut()
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
@@ -31,8 +37,7 @@ class LojistaActivity : AppCompatActivity() {
         }
 
         btnEditarPerfil.setOnClickListener {
-            val intent = Intent(this, EditarPerfilLogistaActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, EditarPerfilLogistaActivity::class.java))
         }
 
         btnRecusar.setOnClickListener {
@@ -44,11 +49,24 @@ class LojistaActivity : AppCompatActivity() {
         }
 
         navCardapio.setOnClickListener {
-            val intent = Intent(this, CardapioActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, CardapioActivity::class.java))
         }
 
-        navDashboard.setOnClickListener {
-        }
+        navDashboard.setOnClickListener {}
+    }
+
+    // Busca o estabelecimento que pertence a este lojista (pelo campo donoUid)
+    private fun carregarDadosEstabelecimento() {
+        val uid = auth.currentUser?.uid ?: return
+        db.collection("estabelecimentos").whereEqualTo("donoUid", uid).get()
+            .addOnSuccessListener { resultado ->
+                if (resultado.isEmpty) return@addOnSuccessListener
+                val doc = resultado.documents[0]
+                val nome = doc.getString("nome") ?: ""
+
+                findViewById<TextView>(R.id.tvNomeLoja).text = nome
+                findViewById<TextView>(R.id.tvLocalizacao).text = doc.getString("localizacao") ?: ""
+                findViewById<TextView>(R.id.tvIniciais).text = nome.take(2).uppercase()
+            }
     }
 }

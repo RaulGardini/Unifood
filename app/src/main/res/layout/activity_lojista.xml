@@ -46,28 +46,31 @@
                 app:cardElevation="4dp">
 
                 <TextView
+                    android:id="@+id/tvIniciais"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:text="KA"
+                    android:text=""
                     android:textColor="#FFFFFF"
                     android:textSize="28sp"
                     android:textStyle="bold"/>
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tvNomeLoja"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Kalzone"
+                android:text=""
                 android:textColor="#FFFFFF"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/tvLocalizacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Centro de convivencia"
+                android:text=""
                 android:textColor="#B0C4DE"
                 android:textSize="13sp"/>
 
