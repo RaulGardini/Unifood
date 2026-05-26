@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="150dp"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="@drawable/bg_popup">
+    android:background="@drawable/bg_item"
+    android:padding="10dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvAtivar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thiago Narak"
-        android:textStyle="bold"/>
+        android:text="Ativar"
+        android:textSize="15sp"
+        android:padding="10dp" />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvDesativar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Carvalho de Oliveira"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp">
-
-        <Button
-            android:id="@+id/btnAtivo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ativo"/>
-
-        <Button
-            android:id="@+id/btnInativo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inativo"
-            android:layout_marginStart="8dp"/>
-    </LinearLayout>
+        android:text="Desativar"
+        android:textSize="15sp"
+        android:padding="10dp" />
 
 </LinearLayout>
