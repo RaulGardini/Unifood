@@ -7,6 +7,7 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class RecuperarSenhaActivity : AppCompatActivity() {
 
@@ -35,7 +36,15 @@ class RecuperarSenhaActivity : AppCompatActivity() {
                 tvErro.visibility = android.view.View.VISIBLE
             } else {
                 tvErro.visibility = android.view.View.GONE
-                Toast.makeText(this, "Link enviado para o email!", Toast.LENGTH_SHORT).show()
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Link enviado para $email", Toast.LENGTH_LONG).show()
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        tvErro.text = "Email não encontrado"
+                        tvErro.visibility = android.view.View.VISIBLE
+                    }
             }
         }
 
