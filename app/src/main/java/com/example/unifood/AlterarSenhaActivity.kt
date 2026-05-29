@@ -78,12 +78,10 @@ class AlterarSenhaActivity : AppCompatActivity() {
 
         btnAtualizarSenha.isEnabled = false
 
-        // Passo 1: Re-autenticar com a senha atual (obrigatório pelo Firebase)
         val credencial = EmailAuthProvider.getCredential(email, senhaAtual)
 
         user.reauthenticate(credencial)
             .addOnSuccessListener {
-                // Passo 2: Atualizar para a nova senha
                 user.updatePassword(novaSenha)
                     .addOnSuccessListener {
                         Toast.makeText(

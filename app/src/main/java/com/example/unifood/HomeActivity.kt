@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,7 +37,6 @@ class HomeActivity : AppCompatActivity() {
         configurarNavegacao()
     }
 
-    // Busca o nome do usuário logado e mostra na saudação
     private fun carregarNomeUsuario() {
         val uid = auth.currentUser?.uid ?: return
         db.collection("usuarios").document(uid).get()
@@ -50,7 +46,6 @@ class HomeActivity : AppCompatActivity() {
             }
     }
 
-    // Busca todos os estabelecimentos do Firestore
     private fun carregarLojas() {
         db.collection("estabelecimentos").get()
             .addOnSuccessListener { resultado ->
@@ -65,12 +60,8 @@ class HomeActivity : AppCompatActivity() {
                 }
                 filtrar()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao carregar estabelecimentos", Toast.LENGTH_SHORT).show()
-            }
     }
 
-    // Aplica o filtro de categoria + busca por texto e atualiza a tela
     private fun filtrar() {
         var lista = todasLojas
 
@@ -86,7 +77,6 @@ class HomeActivity : AppCompatActivity() {
         mostrarLojas(lista)
     }
 
-    // Cria os cards das lojas na tela, 2 por linha (igual ao layout original)
     private fun mostrarLojas(lojas: List<Loja>) {
         containerLojas.removeAllViews()
         tvVazio.visibility = if (lojas.isEmpty()) View.VISIBLE else View.GONE
@@ -98,14 +88,12 @@ class HomeActivity : AppCompatActivity() {
             linha.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-            ).apply { bottomMargin = dpToPx(12) }
+            )
 
             linha.addView(criarCard(lojas[i]))
 
             if (i + 1 < lojas.size) {
                 linha.addView(criarCard(lojas[i + 1]))
-            } else {
-                linha.addView(View(this), LinearLayout.LayoutParams(0, 0, 1f))
             }
 
             containerLojas.addView(linha)
@@ -113,17 +101,13 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    // Infla um card de loja e preenche com os dados
     private fun criarCard(loja: Loja): View {
         val card = layoutInflater.inflate(R.layout.item_loja, null)
         card.findViewById<TextView>(R.id.tvNomeLoja).text = loja.nome
         card.findViewById<TextView>(R.id.tvTempoEntrega).text = loja.tempoEntrega
         card.findViewById<TextView>(R.id.tvLocalizacao).text = loja.localizacao
 
-        card.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f).apply {
-            marginStart = dpToPx(6)
-            marginEnd = dpToPx(6)
-        }
+        card.layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
 
         card.setOnClickListener {
             val intent = Intent(this, LojaActivity::class.java)
@@ -135,11 +119,6 @@ class HomeActivity : AppCompatActivity() {
         return card
     }
 
-    private fun dpToPx(dp: Int): Int {
-        return (dp * resources.displayMetrics.density).toInt()
-    }
-
-    // Configura os botões de filtro (Todos, Lanches, Saudável)
     private fun configurarFiltros() {
         val filtroTodos = findViewById<TextView>(R.id.tvFiltroTodos)
         val filtroLanches = findViewById<TextView>(R.id.tvFiltroLanches)
@@ -165,7 +144,6 @@ class HomeActivity : AppCompatActivity() {
         filtroSaudavel.setOnClickListener { selecionarFiltro(filtroSaudavel, "Saudável") }
     }
 
-    // Busca em tempo real pelo nome da loja
     private fun configurarBusca() {
         etBusca.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
@@ -174,26 +152,14 @@ class HomeActivity : AppCompatActivity() {
         })
     }
 
-    // Navegação inferior (Inicio, Pedidos, Perfil)
     private fun configurarNavegacao() {
-        val indicatorInicio = findViewById<View>(R.id.indicatorInicio)
-        val indicatorPedidos = findViewById<View>(R.id.indicatorPedidos)
-        val indicatorPerfil = findViewById<View>(R.id.indicatorPerfil)
-
-        findViewById<LinearLayout>(R.id.navInicio).setOnClickListener {
-            indicatorInicio.setBackgroundResource(R.color.orange)
-            indicatorPedidos.setBackgroundColor(android.graphics.Color.TRANSPARENT)
-            indicatorPerfil.setBackgroundColor(android.graphics.Color.TRANSPARENT)
-        }
+        findViewById<LinearLayout>(R.id.navInicio).setOnClickListener { }
 
         findViewById<LinearLayout>(R.id.navPedidos).setOnClickListener {
             startActivity(Intent(this, CarrinhoActivity::class.java))
         }
 
         findViewById<LinearLayout>(R.id.navPerfil).setOnClickListener {
-            indicatorInicio.setBackgroundColor(android.graphics.Color.TRANSPARENT)
-            indicatorPedidos.setBackgroundColor(android.graphics.Color.TRANSPARENT)
-            indicatorPerfil.setBackgroundResource(R.color.orange)
             startActivity(Intent(this, PerfilActivity::class.java))
         }
     }

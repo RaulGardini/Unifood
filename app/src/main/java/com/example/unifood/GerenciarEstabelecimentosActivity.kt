@@ -23,7 +23,7 @@ class GerenciarEstabelecimentosActivity : AppCompatActivity() {
     private lateinit var container: LinearLayout
     private lateinit var etBuscar: EditText
 
-    private var todosEstabelecimentos = listOf<Triple<String, String, String>>() // id, nome, localizacao
+    private var todosEstabelecimentos = listOf<Triple<String, String, String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +49,7 @@ class GerenciarEstabelecimentosActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        carregarEstabelecimentos() // Atualiza ao voltar da tela de adicionar
+        carregarEstabelecimentos()
     }
 
     private fun carregarEstabelecimentos() {

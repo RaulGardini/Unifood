@@ -19,16 +19,9 @@ class LojistaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lojista)
 
-        val btnLogout = findViewById<TextView>(R.id.btnLogout)
-        val btnEditarPerfil = findViewById<TextView>(R.id.btnEditarPerfil)
-        val btnRecusar = findViewById<Button>(R.id.btnRecusar)
-        val btnAceitar = findViewById<Button>(R.id.btnAceitar)
-        val navCardapio = findViewById<LinearLayout>(R.id.navCardapio)
-        val navDashboard = findViewById<LinearLayout>(R.id.navDashboard)
-
         carregarDadosEstabelecimento()
 
-        btnLogout.setOnClickListener {
+        findViewById<TextView>(R.id.btnLogout).setOnClickListener {
             auth.signOut()
             val intent = Intent(this, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -36,26 +29,25 @@ class LojistaActivity : AppCompatActivity() {
             finish()
         }
 
-        btnEditarPerfil.setOnClickListener {
+        findViewById<TextView>(R.id.btnEditarPerfil).setOnClickListener {
             startActivity(Intent(this, EditarPerfilLogistaActivity::class.java))
         }
 
-        btnRecusar.setOnClickListener {
+        findViewById<Button>(R.id.btnRecusar).setOnClickListener {
             Toast.makeText(this, "Pedido recusado", Toast.LENGTH_SHORT).show()
         }
 
-        btnAceitar.setOnClickListener {
+        findViewById<Button>(R.id.btnAceitar).setOnClickListener {
             Toast.makeText(this, "Pedido aceito!", Toast.LENGTH_SHORT).show()
         }
 
-        navCardapio.setOnClickListener {
+        findViewById<LinearLayout>(R.id.navCardapio).setOnClickListener {
             startActivity(Intent(this, CardapioActivity::class.java))
         }
 
-        navDashboard.setOnClickListener {}
+        findViewById<LinearLayout>(R.id.navDashboard).setOnClickListener { }
     }
 
-    // Busca o estabelecimento que pertence a este lojista (pelo campo donoUid)
     private fun carregarDadosEstabelecimento() {
         val uid = auth.currentUser?.uid ?: return
         db.collection("estabelecimentos").whereEqualTo("donoUid", uid).get()
