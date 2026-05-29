@@ -42,7 +42,6 @@ class EditarPerfilActivity : AppCompatActivity() {
         }
     }
 
-
     private fun carregarDados() {
         val uid = auth.currentUser?.uid ?: return
         db.collection("usuarios").document(uid).get()
