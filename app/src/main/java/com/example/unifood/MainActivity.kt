@@ -85,8 +85,9 @@ class MainActivity : AppCompatActivity() {
                 tvErro.visibility = View.GONE
                 redirecionarPorTipo(result.user!!.uid)
             }
-            .addOnFailureListener {
+            .addOnFailureListener { e ->
                 btnEntrar.isEnabled = true
+                tvErro.text = e.message ?: "Erro desconhecido"
                 tvErro.visibility = View.VISIBLE
             }
     }
