@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F2F2F2">
 
-    <!-- HEADER MODERNO -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
@@ -22,7 +20,7 @@
             android:textSize="12sp"
             android:background="@drawable/bg_button_orange"
             android:padding="6dp"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/titulo"
@@ -33,7 +31,7 @@
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"/>
+            android:layout_marginTop="50dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,11 +41,10 @@
             android:textSize="14sp"
             android:layout_below="@id/titulo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="6dp"/>
+            android:layout_marginTop="6dp" />
 
     </RelativeLayout>
 
-    <!-- CARDS -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +52,6 @@
         android:padding="10dp"
         android:weightSum="2">
 
-        <!-- CARD -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="90dp"
@@ -69,7 +65,7 @@
                 android:id="@+id/tvContUsuario"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="1.540"
+                android:text="0"
                 android:textColor="#123B63"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -79,10 +75,10 @@
                 android:layout_height="wrap_content"
                 android:text="Usuários"
                 android:textSize="13sp"
-                android:textColor="#666666"/>
+                android:textColor="#666666" />
+
         </LinearLayout>
 
-        <!-- CARD -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="90dp"
@@ -96,7 +92,7 @@
                 android:id="@+id/tvContEstabe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2"
+                android:text="0"
                 android:textColor="#123B63"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -106,8 +102,10 @@
                 android:layout_height="wrap_content"
                 android:text="Estabelecimentos"
                 android:textSize="13sp"
-                android:textColor="#666666"/>
+                android:textColor="#666666" />
+
         </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout
@@ -130,17 +128,18 @@
                 android:id="@+id/tvContPedidos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="237"
+                android:text="0"
                 android:textColor="#123B63"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pedidos hoje"
                 android:textSize="13sp"
-                android:textColor="#666666"/>
+                android:textColor="#666666" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -156,21 +155,22 @@
                 android:id="@+id/tvContBloqueados"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="5"
+                android:text="0"
                 android:textColor="#123B63"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Usuários bloqueados"
                 android:textSize="13sp"
-                android:textColor="#666666"/>
+                android:textColor="#666666" />
+
         </LinearLayout>
+
     </LinearLayout>
 
-    <!-- LISTA -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -187,7 +187,6 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvGerenEstabe"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -202,6 +201,7 @@
                 android:textColor="#123B63"
                 android:alpha="0.3"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -214,7 +214,6 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvGerenUsuario"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -229,6 +228,7 @@
                 android:textColor="#123B63"
                 android:alpha="0.3"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -240,7 +240,6 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tvRelatorio"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -255,6 +254,7 @@
                 android:textColor="#123B63"
                 android:alpha="0.3"
                 android:textSize="20sp" />
+
         </LinearLayout>
 
     </LinearLayout>
