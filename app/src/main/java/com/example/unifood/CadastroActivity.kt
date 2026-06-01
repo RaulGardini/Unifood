@@ -97,7 +97,16 @@ class CadastroActivity : AppCompatActivity() {
                     "nome" to nome,
                     "email" to email,
                     "matricula" to matricula,
-                    "tipo" to "aluno"
+
+                    // Dados da conta
+                    "tipo" to "aluno",
+                    "status" to "Ativo",
+
+                    // Preferências de notificação
+                    "notif_confirmacao" to true,
+                    "notif_novidades" to true,
+                    "notif_ofertas" to true,
+                    "notif_status_pedido" to true
                 )
 
                 db.collection("usuarios").document(uid).set(usuario)

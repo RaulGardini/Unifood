@@ -9,14 +9,23 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.view.Window
+import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.RatingBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class PedidosActivity : AppCompatActivity() {
+
+    private var lojaId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pedidos)
+
+        lojaId = intent.getStringExtra("lojaId") ?: ""
 
         val navInicio = findViewById<LinearLayout>(R.id.navInicio)
         val navPedidos = findViewById<LinearLayout>(R.id.navPedidos)
@@ -27,8 +36,7 @@ class PedidosActivity : AppCompatActivity() {
         val indicatorPerfil = findViewById<View>(R.id.indicatorPerfil)
 
         navInicio.setOnClickListener {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, HomeActivity::class.java))
             finish()
         }
 
@@ -39,8 +47,7 @@ class PedidosActivity : AppCompatActivity() {
         }
 
         navPerfil.setOnClickListener {
-            val intent = Intent(this, PerfilActivity::class.java)
-            startActivity(intent)
+            startActivity(Intent(this, PerfilActivity::class.java))
             finish()
         }
 
@@ -64,7 +71,33 @@ class PedidosActivity : AppCompatActivity() {
         dialog.setCancelable(true)
 
         dialog.findViewById<View>(R.id.btnEnviar).setOnClickListener {
-            dialog.dismiss()
+            val nota = dialog.findViewById<RatingBar>(R.id.ratingBar).rating
+            val comentario = dialog.findViewById<EditText>(R.id.etComentario).text.toString().trim()
+            val uid = FirebaseAuth.getInstance().currentUser?.uid ?: return@setOnClickListener
+
+            if (lojaId.isEmpty()) {
+                Toast.makeText(this, "Erro: loja não identificada", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val avaliacao = hashMapOf(
+                "usuarioUid" to uid,
+                "lojaId" to lojaId,
+                "nota" to nota,
+                "comentario" to comentario,
+                "data" to System.currentTimeMillis()
+            )
+
+            FirebaseFirestore.getInstance()
+                .collection("avaliacoes")
+                .add(avaliacao)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Avaliação enviada!", Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao enviar avaliação", Toast.LENGTH_SHORT).show()
+                }
         }
 
         dialog.show()
@@ -73,7 +106,7 @@ class PedidosActivity : AppCompatActivity() {
             if (dialog.isShowing) {
                 dialog.dismiss()
             }
-        }, 3000)
+        }, 10000)
     }
 
     private fun showCancelarDialog() {

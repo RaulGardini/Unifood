@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import android.widget.TextView
 
 class EditarPerfilActivity : AppCompatActivity() {
 
@@ -19,7 +20,7 @@ class EditarPerfilActivity : AppCompatActivity() {
     private lateinit var edtEmail: EditText
     private lateinit var edtMatricula: EditText
     private lateinit var btnSalvar: Button
-    private lateinit var btnBack: ImageButton
+    private lateinit var btnBack: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +31,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         edtMatricula = findViewById(R.id.edtMatricula)
         btnSalvar = findViewById(R.id.btnSalvar)
         btnBack = findViewById(R.id.btnBack)
+
 
         carregarDados()
 
