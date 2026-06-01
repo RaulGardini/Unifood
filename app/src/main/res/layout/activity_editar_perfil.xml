@@ -3,134 +3,222 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_gray">
+    android:background="#F5F5F5">
 
+    <!-- HEADER AZUL -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:background="@color/navy"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="95dp"
+        android:background="#0B3768"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackground"
-                app:cardBackgroundColor="#FF6B00"
-                app:cardCornerRadius="22.5dp"
-                app:cardElevation="2dp">
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:background="#FF6B00"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="3dp"
+                android:text="Voltar"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:textStyle="bold" />
 
-                <ImageButton
-                    android:id="@+id/btnBack"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:padding="10dp"
-                    android:scaleType="centerInside"
-                    android:src="@android:drawable/ic_menu_revert"
-                    app:tint="#FFFFFF"
-                    android:contentDescription="Voltar" />
-            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Editar Perfil"
+                android:textColor="#FFFFFF"
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
         </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:text="Editar Perfil"
-            android:textColor="@color/white"
-            android:textSize="28sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
+    <!-- CONTEÚDO -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="95dp"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="36dp">
 
         <ImageView
             android:id="@+id/imgAvatar"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="24dp"
+            android:layout_width="86dp"
+            android:layout_height="86dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="18dp"
             android:background="@drawable/bg_circle"
-            android:clipToOutline="true"
-            android:padding="28dp"
-            android:src="@android:drawable/ic_menu_camera"
-            android:scaleType="centerInside" />
+            android:padding="24dp"
+            android:scaleType="centerInside"
+            android:src="@android:drawable/ic_menu_camera" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nome completo"
-            android:textColor="@color/text_dark"
+            android:textColor="#333333"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtNome"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/bg_input"
-            android:paddingHorizontal="12dp" />
+            android:inputType="textPersonName"
+            android:paddingHorizontal="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:text="Email institucional"
-            android:textColor="@color/text_dark"
+            android:textColor="#333333"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtEmail"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/bg_input"
             android:inputType="textEmailAddress"
-            android:paddingHorizontal="12dp" />
+            android:paddingHorizontal="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:text="Matrícula"
-            android:textColor="@color/text_dark"
+            android:textColor="#333333"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <EditText
             android:id="@+id/edtMatricula"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="4dp"
             android:background="@drawable/bg_input"
             android:inputType="number"
-            android:paddingHorizontal="12dp" />
+            android:paddingHorizontal="12dp"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnSalvar"
             android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_marginTop="24dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="22dp"
             android:background="@drawable/bg_button_orange"
             android:text="Salvar"
             android:textAllCaps="false"
-            android:textColor="@color/white"
+            android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold"
             app:backgroundTint="@null" />
 
+    </LinearLayout>
+
+    <!-- BOTTOM NAV -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom"
+        android:background="#FFFFFF"
+        android:elevation="12dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="60dp"
+                android:layout_height="3dp"
+                android:layout_marginBottom="6dp"
+                android:background="#E0E0E0" />
+
+            <TextView
+                android:id="@+id/tvTelaHome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inicio"
+                android:textColor="#BDBDBD"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="60dp"
+                android:layout_height="3dp"
+                android:layout_marginBottom="6dp"
+                android:background="#E0E0E0" />
+
+            <TextView
+                android:id="@+id/tvTelaPedidos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pedidos"
+                android:textColor="#BDBDBD"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="60dp"
+                android:layout_height="3dp"
+                android:layout_marginBottom="6dp"
+                android:background="#FF6B00" />
+
+            <TextView
+                android:id="@+id/tvTelaPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Perfil"
+                android:textColor="#FF6B00"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>
