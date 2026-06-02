@@ -1,3 +1,4 @@
+
 package com.example.unifood
 
 import android.content.Intent
@@ -174,10 +175,12 @@ class CarrinhoActivity : AppCompatActivity() {
         db.collection("pedidos").add(pedido)
             .addOnSuccessListener { docRef ->
                 Toast.makeText(this, "Pedido $codigo finalizado!", Toast.LENGTH_SHORT).show()
+
+                val lojaIdFinal = CarrinhoManager.lojaId
                 CarrinhoManager.limpar()
 
                 val intent = Intent(this, PedidosActivity::class.java)
-                intent.putExtra("lojaId", CarrinhoManager.lojaId)
+                intent.putExtra("lojaId", lojaIdFinal)
                 intent.putExtra("pedidoId", docRef.id)
                 startActivity(intent)
                 finish()
