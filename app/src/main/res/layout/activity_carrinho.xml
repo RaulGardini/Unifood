@@ -21,26 +21,6 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:cardBackgroundColor="#FF6B00"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="2dp">
-
-            <ImageButton
-                android:id="@+id/btnPedidos"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:padding="8dp"
-                android:scaleType="centerInside"
-                android:src="@android:drawable/ic_menu_recent_history"
-                app:tint="#FFFFFF"
-                android:contentDescription="Ver pedidos" />
-        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
     <ScrollView

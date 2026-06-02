@@ -17,8 +17,6 @@ class ConfigNotificacoesActivity : AppCompatActivity() {
 
     private lateinit var switchStatusPedido: Switch
     private lateinit var switchConfirmacao: Switch
-    private lateinit var switchOfertas: Switch
-    private lateinit var switchNovidades: Switch
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +24,6 @@ class ConfigNotificacoesActivity : AppCompatActivity() {
 
         switchStatusPedido = findViewById(R.id.switchStatusPedido)
         switchConfirmacao = findViewById(R.id.switchConfirmacao)
-        switchOfertas = findViewById(R.id.switchOfertas)
-        switchNovidades = findViewById(R.id.switchNovidades)
 
         carregarPreferencias()
         configurarListeners()
@@ -56,8 +52,6 @@ class ConfigNotificacoesActivity : AppCompatActivity() {
             .addOnSuccessListener { doc ->
                 switchStatusPedido.isChecked = doc.getBoolean("notif_status_pedido") ?: true
                 switchConfirmacao.isChecked = doc.getBoolean("notif_confirmacao") ?: true
-                switchOfertas.isChecked = doc.getBoolean("notif_ofertas") ?: true
-                switchNovidades.isChecked = doc.getBoolean("notif_novidades") ?: true
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Erro ao carregar preferências", Toast.LENGTH_SHORT).show()
@@ -73,14 +67,6 @@ class ConfigNotificacoesActivity : AppCompatActivity() {
 
         switchConfirmacao.setOnCheckedChangeListener { _, isChecked ->
             db.collection("usuarios").document(uid).update("notif_confirmacao", isChecked)
-        }
-
-        switchOfertas.setOnCheckedChangeListener { _, isChecked ->
-            db.collection("usuarios").document(uid).update("notif_ofertas", isChecked)
-        }
-
-        switchNovidades.setOnCheckedChangeListener { _, isChecked ->
-            db.collection("usuarios").document(uid).update("notif_novidades", isChecked)
         }
     }
 }

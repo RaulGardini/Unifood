@@ -14,8 +14,11 @@ class LojaActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
 
     private var lojaId: String = ""
+    private var categoriaAtual: String? = null
+    private var todosItens = listOf<ItemCardapio>()
 
     private lateinit var containerItens: LinearLayout
+    private lateinit var containerCategorias: LinearLayout
     private lateinit var tvNomeLoja: TextView
     private lateinit var tvLocalizacao: TextView
     private lateinit var tvCategoria: TextView
@@ -23,21 +26,12 @@ class LojaActivity : AppCompatActivity() {
     private lateinit var tvTempoEntregaInfo: TextView
     private lateinit var tvMediaAvaliacao: TextView
 
-    private lateinit var tvAbaLanches: TextView
-    private lateinit var tvAbaBebidas: TextView
-    private lateinit var tvAbaDoces: TextView
-
-    private var categoriaAtual = "Lanches"
-    private var todosItens = listOf<ItemCardapio>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loja)
 
         containerItens = findViewById(R.id.containerItens)
-
-        val tvVoltar = findViewById<TextView>(R.id.tvVoltar)
-
+        containerCategorias = findViewById(R.id.containerCategorias)
         tvNomeLoja = findViewById(R.id.tvNomeLoja)
         tvLocalizacao = findViewById(R.id.tvLocalizacao)
         tvCategoria = findViewById(R.id.tvCategoria)
@@ -45,39 +39,94 @@ class LojaActivity : AppCompatActivity() {
         tvTempoEntregaInfo = findViewById(R.id.tvTempoEntregaInfo)
         tvMediaAvaliacao = findViewById(R.id.tvMediaAvaliacao)
 
-        tvAbaLanches = findViewById(R.id.tvAbaLanches)
-        tvAbaBebidas = findViewById(R.id.tvAbaBebidas)
-        tvAbaDoces = findViewById(R.id.tvAbaDoces)
-
-        tvVoltar.setOnClickListener { finish() }
+        findViewById<TextView>(R.id.tvVoltar).setOnClickListener { finish() }
 
         lojaId = intent.getStringExtra("lojaId") ?: return
         val lojaNome = intent.getStringExtra("lojaNome") ?: ""
-
         tvNomeLoja.text = lojaNome
 
         carregarDadosLoja(lojaId)
         carregarCardapio(lojaId)
         carregarMediaAvaliacoes(lojaId)
+    }
 
-        selecionarAba(tvAbaLanches)
+    private fun carregarDadosLoja(lojaId: String) {
+        db.collection("estabelecimentos").document(lojaId).get()
+            .addOnSuccessListener { doc ->
+                val nome = doc.getString("nome") ?: ""
+                val localizacao = doc.getString("localizacao") ?: ""
+                val tempoEntrega = doc.getString("tempoEntrega") ?: ""
+                val horarioFim = doc.getString("horarioFim") ?: ""
 
-        tvAbaLanches.setOnClickListener {
-            categoriaAtual = "Lanches"
-            selecionarAba(tvAbaLanches)
-            mostrarItensFiltrados()
+                tvNomeLoja.text = nome
+                tvLocalizacao.text = localizacao
+
+                tvTempo.text = if (horarioFim.isNotEmpty()) {
+                    "Aberto até $horarioFim"
+                } else {
+                    tempoEntrega
+                }
+
+                tvTempoEntregaInfo.text = if (tempoEntrega.isNotEmpty()) {
+                    "⏱ $tempoEntrega"
+                } else {
+                    ""
+                }
+
+                val categorias = doc.get("categorias") as? List<*> ?: emptyList<String>()
+                tvCategoria.text = if (categorias.isNotEmpty()) {
+                    categorias.first().toString()
+                } else {
+                    ""
+                }
+
+                montarAbaCategorias(categorias.map { it.toString() })
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Erro ao carregar loja", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun montarAbaCategorias(categorias: List<String>) {
+        containerCategorias.removeAllViews()
+
+        if (categorias.isEmpty()) return
+
+        if (categoriaAtual == null) categoriaAtual = categorias.first()
+
+        for (cat in categorias) {
+            val tv = TextView(this).apply {
+                text = cat
+                textSize = 14f
+                setTypeface(null, android.graphics.Typeface.BOLD)
+                gravity = android.view.Gravity.CENTER
+                setPadding(44, 0, 44, 0)
+                layoutParams = LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 64
+                ).apply { marginEnd = 16 }
+            }
+
+            atualizarEstiloAba(tv, cat)
+
+            tv.setOnClickListener {
+                categoriaAtual = cat
+                montarAbaCategorias(categorias)
+                mostrarItensFiltrados()
+            }
+
+            containerCategorias.addView(tv)
         }
 
-        tvAbaBebidas.setOnClickListener {
-            categoriaAtual = "Bebidas"
-            selecionarAba(tvAbaBebidas)
-            mostrarItensFiltrados()
-        }
+        mostrarItensFiltrados()
+    }
 
-        tvAbaDoces.setOnClickListener {
-            categoriaAtual = "Doces"
-            selecionarAba(tvAbaDoces)
-            mostrarItensFiltrados()
+    private fun atualizarEstiloAba(tv: TextView, categoria: String) {
+        if (categoriaAtual == categoria) {
+            tv.setBackgroundResource(R.drawable.bg_category_selected)
+            tv.setTextColor(Color.WHITE)
+        } else {
+            tv.setBackgroundColor(Color.TRANSPARENT)
+            tv.setTextColor(Color.parseColor("#999999"))
         }
     }
 
@@ -107,53 +156,6 @@ class LojaActivity : AppCompatActivity() {
             }
             .addOnFailureListener {
                 tvMediaAvaliacao.text = "⭐ 0.0"
-            }
-    }
-
-    private fun selecionarAba(selecionada: TextView) {
-        val abas = listOf(tvAbaLanches, tvAbaBebidas, tvAbaDoces)
-
-        abas.forEach { aba ->
-            aba.setBackgroundColor(Color.TRANSPARENT)
-            aba.setTextColor(Color.parseColor("#999999"))
-        }
-
-        selecionada.setBackgroundResource(R.drawable.bg_category_selected)
-        selecionada.setTextColor(Color.WHITE)
-    }
-
-    private fun carregarDadosLoja(lojaId: String) {
-        db.collection("estabelecimentos").document(lojaId).get()
-            .addOnSuccessListener { doc ->
-                val nome = doc.getString("nome") ?: ""
-                val localizacao = doc.getString("localizacao") ?: ""
-                val tempoEntrega = doc.getString("tempoEntrega") ?: ""
-                val horarioFim = doc.getString("horarioFim") ?: ""
-
-                tvNomeLoja.text = nome
-                tvLocalizacao.text = localizacao
-
-                tvTempo.text = if (horarioFim.isNotEmpty()) {
-                    "Aberto até $horarioFim"
-                } else {
-                    tempoEntrega
-                }
-
-                tvTempoEntregaInfo.text = if (tempoEntrega.isNotEmpty()) {
-                    "⏱ $tempoEntrega"
-                } else {
-                    ""
-                }
-
-                val categorias = doc.get("categorias") as? List<*>
-                tvCategoria.text = if (!categorias.isNullOrEmpty()) {
-                    categorias.last().toString()
-                } else {
-                    ""
-                }
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao carregar loja", Toast.LENGTH_SHORT).show()
             }
     }
 

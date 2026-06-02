@@ -12,13 +12,11 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class GerenciarEstabelecimentosActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
-    private val auth = FirebaseAuth.getInstance()
 
     private lateinit var container: LinearLayout
     private lateinit var etBuscar: EditText
@@ -53,10 +51,7 @@ class GerenciarEstabelecimentosActivity : AppCompatActivity() {
     }
 
     private fun carregarEstabelecimentos() {
-        val uid = auth.currentUser?.uid ?: return
-
         db.collection("estabelecimentos")
-            .whereEqualTo("donoUid", uid)
             .get()
             .addOnSuccessListener { resultado ->
                 todosEstabelecimentos = resultado.documents.map { doc ->

@@ -164,6 +164,13 @@ class CardapioActivity : AppCompatActivity() {
             tvDisp.setBackgroundResource(R.drawable.bg_indisponivel)
         }
 
+        card.findViewById<TextView>(R.id.btnEditarItem).setOnClickListener {
+            val intent = Intent(this, EditarItemCardapioActivity::class.java)
+            intent.putExtra("estabelecimentoId", estabelecimentoId)
+            intent.putExtra("itemId", item.id)
+            startActivity(intent)
+        }
+
         card.findViewById<TextView>(R.id.btnExcluirItem).setOnClickListener {
             mostrarDialogExcluir(item)
         }
