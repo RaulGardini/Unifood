@@ -84,11 +84,7 @@ class AlterarSenhaActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 user.updatePassword(novaSenha)
                     .addOnSuccessListener {
-                        Toast.makeText(
-                            this,
-                            "Senha alterada com sucesso!",
-                            Toast.LENGTH_LONG
-                        ).show()
+                        
                         finish()
                     }
                     .addOnFailureListener { e ->
