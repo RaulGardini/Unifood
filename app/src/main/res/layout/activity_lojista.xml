@@ -129,9 +129,10 @@
                     android:layout_marginEnd="8dp">
 
                     <TextView
+                        android:id="@+id/tvPedidosFila"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7"
+                        android:text="0"
                         android:textColor="@color/orange"
                         android:textSize="24sp"
                         android:textStyle="bold"/>
@@ -154,9 +155,10 @@
                     android:padding="14dp">
 
                     <TextView
+                        android:id="@+id/tvPedidosHoje"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="37"
+                        android:text="0"
                         android:textColor="@color/orange"
                         android:textSize="24sp"
                         android:textStyle="bold"/>
@@ -179,9 +181,10 @@
                 android:layout_marginBottom="20dp">
 
                 <TextView
+                    android:id="@+id/tvFaturamento"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="R$ 450,00"
+                    android:text="R$ 0,00"
                     android:textColor="@color/orange"
                     android:textSize="20sp"
                     android:textStyle="bold"/>
@@ -231,6 +234,7 @@
                         android:textSize="13sp"/>
 
                     <TextView
+                        android:id="@+id/tvBadgeNovos"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_gravity="top|end"
@@ -238,7 +242,7 @@
                         android:layout_marginEnd="-6dp"
                         android:background="@drawable/bg_badge"
                         android:gravity="center"
-                        android:text="1"
+                        android:text="0"
                         android:textColor="#FFFFFF"
                         android:textSize="10sp"
                         android:textStyle="bold"/>
@@ -262,6 +266,7 @@
                         android:textSize="13sp"/>
 
                     <TextView
+                        android:id="@+id/tvBadgePreparando"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_gravity="top|end"
@@ -269,7 +274,7 @@
                         android:layout_marginEnd="-6dp"
                         android:background="@drawable/bg_badge"
                         android:gravity="center"
-                        android:text="5"
+                        android:text="0"
                         android:textColor="#FFFFFF"
                         android:textSize="10sp"
                         android:textStyle="bold"/>
@@ -292,6 +297,7 @@
                         android:textSize="13sp"/>
 
                     <TextView
+                        android:id="@+id/tvBadgeProntos"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_gravity="top|end"
@@ -299,101 +305,29 @@
                         android:layout_marginEnd="-6dp"
                         android:background="@drawable/bg_badge"
                         android:gravity="center"
-                        android:text="3"
+                        android:text="0"
                         android:textColor="#FFFFFF"
                         android:textSize="10sp"
                         android:textStyle="bold"/>
                 </FrameLayout>
             </LinearLayout>
 
-            <!-- CARD PEDIDO -->
             <LinearLayout
+                android:id="@+id/containerPedidos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_card_stat"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical" />
 
-                <!-- Cabeçalho pedido -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="6dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="#UF-2847"
-                        android:textColor="@color/text_dark"
-                        android:textSize="16sp"
-                        android:textStyle="bold"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Bloco D"
-                        android:textColor="@color/text_muted"
-                        android:textSize="13sp"/>
-                </LinearLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-1x kalzone de frango"
-                    android:textColor="@color/text_muted"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="-2x kalzone de carne"
-                    android:textColor="@color/text_muted"
-                    android:textSize="13sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="R$ 36,00"
-                    android:textColor="@color/orange"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="12dp"/>
-
-                <!-- Botões -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnRecusar"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="10dp"
-                        android:background="@drawable/bg_btn_recusar"
-                        android:text="Recusar"
-                        android:textColor="#D32F2F"
-                        android:textSize="13sp"
-                        android:textAllCaps="false"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/btnAceitar"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_btn_aceitar"
-                        android:text="Aceitar"
-                        android:textColor="#FFFFFF"
-                        android:textSize="13sp"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"/>
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tvSemPedidos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nenhum pedido nesta aba"
+                android:textColor="@color/text_muted"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:padding="20dp"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

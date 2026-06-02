@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -40,14 +39,9 @@ class CarrinhoActivity : AppCompatActivity() {
         btnPix         = findViewById(R.id.btnPix)
         btnDinheiro    = findViewById(R.id.btnDinheiro)
 
-        val btnPedidos = findViewById<ImageButton>(R.id.btnPedidos)
         val navInicio  = findViewById<LinearLayout>(R.id.navInicio)
         val navPedidos = findViewById<LinearLayout>(R.id.navPedidos)
         val navPerfil  = findViewById<LinearLayout>(R.id.navPerfil)
-
-        btnPedidos.setOnClickListener {
-            startActivity(Intent(this, PedidosActivity::class.java))
-        }
 
         btnCartao.setOnClickListener {
             pagamentoSelecionado = "Cartão"
@@ -89,7 +83,38 @@ class CarrinhoActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        verificarPedidoAtivo()
         mostrarItens()
+    }
+
+    private fun verificarPedidoAtivo() {
+        val uid = auth.currentUser?.uid ?: return
+        db.collection("pedidos")
+            .whereEqualTo("usuarioUid", uid)
+            .get()
+            .addOnSuccessListener { resultado ->
+                val pedidoAtivo = resultado.documents
+                    .sortedByDescending { it.getLong("data") ?: 0L }
+                    .firstOrNull { doc ->
+                        val status = doc.getString("status") ?: ""
+                        status in listOf("recebido", "preparando", "pronto")
+                    }
+
+                val pedidoEntregue = resultado.documents
+                    .sortedByDescending { it.getLong("data") ?: 0L }
+                    .firstOrNull { doc ->
+                        doc.getString("status") == "entregue" && doc.getBoolean("avaliado") != true
+                    }
+
+                val pedido = pedidoAtivo ?: pedidoEntregue
+                if (pedido != null) {
+                    val intent = Intent(this, PedidosActivity::class.java)
+                    intent.putExtra("pedidoId", pedido.id)
+                    intent.putExtra("lojaId", pedido.getString("lojaId") ?: "")
+                    startActivity(intent)
+                    finish()
+                }
+            }
     }
 
     private fun mostrarItens() {

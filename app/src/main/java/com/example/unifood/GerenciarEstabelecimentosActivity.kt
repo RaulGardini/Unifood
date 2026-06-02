@@ -12,18 +12,16 @@ import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class GerenciarEstabelecimentosActivity : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
-    private val auth = FirebaseAuth.getInstance()
 
     private lateinit var container: LinearLayout
     private lateinit var etBuscar: EditText
 
-    private var todosEstabelecimentos = listOf<Triple<String, String, String>>() // id, nome, localizacao
+    private var todosEstabelecimentos = listOf<Triple<String, String, String>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,14 +47,11 @@ class GerenciarEstabelecimentosActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        carregarEstabelecimentos() // Atualiza ao voltar da tela de adicionar
+        carregarEstabelecimentos()
     }
 
     private fun carregarEstabelecimentos() {
-        val uid = auth.currentUser?.uid ?: return
-
         db.collection("estabelecimentos")
-            .whereEqualTo("donoUid", uid)
             .get()
             .addOnSuccessListener { resultado ->
                 todosEstabelecimentos = resultado.documents.map { doc ->

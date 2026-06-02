@@ -44,7 +44,6 @@ class EditarPerfilActivity : AppCompatActivity() {
         }
     }
 
-    // Busca os dados do usuário no Firestore e preenche os campos
     private fun carregarDados() {
         val uid = auth.currentUser?.uid ?: return
         db.collection("usuarios").document(uid).get()
@@ -58,7 +57,6 @@ class EditarPerfilActivity : AppCompatActivity() {
             }
     }
 
-    // Salva os dados atualizados no Firestore
     private fun salvarDados() {
         val nome = edtNome.text.toString().trim()
         val email = edtEmail.text.toString().trim()

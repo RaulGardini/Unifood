@@ -30,7 +30,7 @@ class ChatBotActivity : AppCompatActivity() {
 
     private val generativeModel = GenerativeModel(
         modelName = "gemini-1.5-flash",
-        apiKey = "gen-lang-client-0699792715"
+        apiKey = ""
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,6 +120,7 @@ class ChatBotActivity : AppCompatActivity() {
                 salvarMensagem(textoResposta, "bot")
 
             } catch (e: Exception) {
+                android.util.Log.e("ChatBot", "Erro IA: ${e.message}", e)
                 removerUltimaMensagem()
                 adicionarMensagemBot("Erro ao conectar com a IA.")
             }

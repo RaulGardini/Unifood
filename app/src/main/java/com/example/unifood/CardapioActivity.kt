@@ -7,13 +7,10 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
 class CardapioActivity : AppCompatActivity() {
@@ -21,8 +18,10 @@ class CardapioActivity : AppCompatActivity() {
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private var estabelecimentoId: String? = null
+    private var filtroCategoria: String? = null
 
     private lateinit var containerItens: LinearLayout
+    private lateinit var containerCategorias: LinearLayout
     private lateinit var tvVazio: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,37 +29,33 @@ class CardapioActivity : AppCompatActivity() {
         setContentView(R.layout.activity_cardapio)
 
         containerItens = findViewById(R.id.containerItens)
+        containerCategorias = findViewById(R.id.containerCategorias)
         tvVazio = findViewById(R.id.tvVazio)
 
-        val btnAdicionarCardapio = findViewById<Button>(R.id.btnAdicionarCardapio)
-        val btnAddCategoria = findViewById<TextView>(R.id.btnAddCategoria)
-        val navDashboard = findViewById<LinearLayout>(R.id.navDashboard)
-        val navCardapio = findViewById<LinearLayout>(R.id.navCardapio)
-
-        // Busca o estabelecimento do lojista e carrega os itens
         buscarEstabelecimentoECarregarItens()
 
-        btnAdicionarCardapio.setOnClickListener {
+        findViewById<Button>(R.id.btnAdicionarCardapio).setOnClickListener {
             val intent = Intent(this, NovoItemCardapioActivity::class.java)
             intent.putExtra("estabelecimentoId", estabelecimentoId)
             startActivity(intent)
         }
 
-        btnAddCategoria.setOnClickListener {
+        findViewById<TextView>(R.id.btnAddCategoria).setOnClickListener {
             mostrarDialogCategoria()
         }
 
-        navDashboard.setOnClickListener {
+        findViewById<LinearLayout>(R.id.navDashboard).setOnClickListener {
             startActivity(Intent(this, LojistaActivity::class.java))
             finish()
         }
 
-        navCardapio.setOnClickListener {}
+        findViewById<LinearLayout>(R.id.navCardapio).setOnClickListener { }
     }
 
     override fun onResume() {
         super.onResume()
         if (estabelecimentoId != null) {
+            carregarCategorias()
             carregarItens()
         }
     }
@@ -71,7 +66,49 @@ class CardapioActivity : AppCompatActivity() {
             .addOnSuccessListener { resultado ->
                 if (resultado.isEmpty) return@addOnSuccessListener
                 estabelecimentoId = resultado.documents[0].id
+                carregarCategorias()
                 carregarItens()
+            }
+    }
+
+    private fun carregarCategorias() {
+        val id = estabelecimentoId ?: return
+        db.collection("estabelecimentos").document(id).get()
+            .addOnSuccessListener { doc ->
+                val categorias = doc.get("categorias") as? List<*> ?: emptyList<String>()
+
+                val btnAdd = findViewById<TextView>(R.id.btnAddCategoria)
+                containerCategorias.removeAllViews()
+
+                for (cat in categorias) {
+                    val nome = cat.toString()
+                    val tv = TextView(this)
+                    tv.text = nome
+                    tv.textSize = 13f
+                    tv.setPadding(32, 0, 32, 0)
+                    tv.gravity = android.view.Gravity.CENTER
+                    tv.layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT, 85
+                    ).apply { marginEnd = 16 }
+
+                    if (filtroCategoria == nome) {
+                        tv.setBackgroundResource(R.drawable.bg_tab_active)
+                        tv.setTextColor(Color.WHITE)
+                    } else {
+                        tv.setBackgroundResource(R.drawable.bg_tab_inactive)
+                        tv.setTextColor(0xFF333333.toInt())
+                    }
+
+                    tv.setOnClickListener {
+                        filtroCategoria = if (filtroCategoria == nome) null else nome
+                        carregarCategorias()
+                        carregarItens()
+                    }
+
+                    containerCategorias.addView(tv)
+                }
+
+                containerCategorias.addView(btnAdd)
             }
     }
 
@@ -82,15 +119,8 @@ class CardapioActivity : AppCompatActivity() {
             .addOnSuccessListener { resultado ->
                 containerItens.removeAllViews()
 
-                if (resultado.isEmpty) {
-                    tvVazio.visibility = View.VISIBLE
-                    return@addOnSuccessListener
-                }
-
-                tvVazio.visibility = View.GONE
-
-                for (doc in resultado.documents) {
-                    val item = ItemCardapio(
+                val itens = resultado.documents.map { doc ->
+                    ItemCardapio(
                         id = doc.id,
                         nome = doc.getString("nome") ?: "",
                         descricao = doc.getString("descricao") ?: "",
@@ -98,6 +128,21 @@ class CardapioActivity : AppCompatActivity() {
                         categoria = doc.getString("categoria") ?: "",
                         disponivel = doc.getBoolean("disponivel") ?: true
                     )
+                }
+
+                val itensFiltrados = if (filtroCategoria != null) {
+                    itens.filter { it.categoria.equals(filtroCategoria, ignoreCase = true) }
+                } else {
+                    itens
+                }
+
+                if (itensFiltrados.isEmpty()) {
+                    tvVazio.visibility = View.VISIBLE
+                    return@addOnSuccessListener
+                }
+
+                tvVazio.visibility = View.GONE
+                for (item in itensFiltrados) {
                     containerItens.addView(criarCardItem(item))
                 }
             }
@@ -119,6 +164,13 @@ class CardapioActivity : AppCompatActivity() {
             tvDisp.setBackgroundResource(R.drawable.bg_indisponivel)
         }
 
+        card.findViewById<TextView>(R.id.btnEditarItem).setOnClickListener {
+            val intent = Intent(this, EditarItemCardapioActivity::class.java)
+            intent.putExtra("estabelecimentoId", estabelecimentoId)
+            intent.putExtra("itemId", item.id)
+            startActivity(intent)
+        }
+
         card.findViewById<TextView>(R.id.btnExcluirItem).setOnClickListener {
             mostrarDialogExcluir(item)
         }
@@ -131,15 +183,9 @@ class CardapioActivity : AppCompatActivity() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_excluir_item)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(
-            (resources.displayMetrics.widthPixels * 0.85).toInt(),
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
         dialog.setCancelable(true)
 
-        dialog.findViewById<View>(R.id.btnNao).setOnClickListener {
-            dialog.dismiss()
-        }
+        dialog.findViewById<View>(R.id.btnNao).setOnClickListener { dialog.dismiss() }
 
         dialog.findViewById<View>(R.id.btnSim).setOnClickListener {
             val id = estabelecimentoId ?: return@setOnClickListener
@@ -160,22 +206,34 @@ class CardapioActivity : AppCompatActivity() {
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_nova_categoria)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setLayout(
-            (resources.displayMetrics.widthPixels * 0.85).toInt(),
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
         dialog.setCancelable(true)
 
-        dialog.findViewById<View>(R.id.btnVoltar).setOnClickListener {
-            dialog.dismiss()
-        }
+        dialog.findViewById<View>(R.id.btnVoltar).setOnClickListener { dialog.dismiss() }
 
         dialog.findViewById<View>(R.id.btnAdicionarCategoria).setOnClickListener {
             val nome = dialog.findViewById<EditText>(R.id.etNomeCategoria).text.toString().trim()
-            if (nome.isNotEmpty()) {
-                Toast.makeText(this, "Categoria '$nome' adicionada!", Toast.LENGTH_SHORT).show()
+            val id = estabelecimentoId
+
+            if (nome.isEmpty()) {
+                Toast.makeText(this, "Digite o nome da categoria", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
-            dialog.dismiss()
+
+            if (id == null) {
+                Toast.makeText(this, "Estabelecimento não encontrado", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            db.collection("estabelecimentos").document(id)
+                .update("categorias", FieldValue.arrayUnion(nome))
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Categoria '$nome' adicionada!", Toast.LENGTH_SHORT).show()
+                    carregarCategorias()
+                    dialog.dismiss()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Erro ao adicionar categoria", Toast.LENGTH_SHORT).show()
+                }
         }
 
         dialog.show()

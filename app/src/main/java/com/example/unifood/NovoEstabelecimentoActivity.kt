@@ -59,21 +59,34 @@ class NovoEstabelecimentoActivity : AppCompatActivity() {
 
                 val donoUid = resultado.documents[0].id
 
-                val estabelecimento = hashMapOf(
-                    "nome" to nome,
-                    "donoUid" to donoUid,
-                    "localizacao" to "",
-                    "categoria" to "",
-                    "tempoEntrega" to ""
-                )
+                db.collection("estabelecimentos").whereEqualTo("donoUid", donoUid).get()
+                    .addOnSuccessListener { estabelecimentos ->
+                        if (!estabelecimentos.isEmpty) {
+                            Toast.makeText(this, "Este lojista já possui um estabelecimento cadastrado", Toast.LENGTH_LONG).show()
+                            btnCadastrar.isEnabled = true
+                            return@addOnSuccessListener
+                        }
 
-                db.collection("estabelecimentos").add(estabelecimento)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Estabelecimento cadastrado!", Toast.LENGTH_SHORT).show()
-                        finish()
+                        val estabelecimento = hashMapOf(
+                            "nome" to nome,
+                            "donoUid" to donoUid,
+                            "localizacao" to "",
+                            "categoria" to "",
+                            "tempoEntrega" to ""
+                        )
+
+                        db.collection("estabelecimentos").add(estabelecimento)
+                            .addOnSuccessListener {
+                                Toast.makeText(this, "Estabelecimento cadastrado!", Toast.LENGTH_SHORT).show()
+                                finish()
+                            }
+                            .addOnFailureListener {
+                                Toast.makeText(this, "Erro ao cadastrar estabelecimento", Toast.LENGTH_SHORT).show()
+                                btnCadastrar.isEnabled = true
+                            }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(this, "Erro ao cadastrar estabelecimento", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Erro ao verificar estabelecimentos", Toast.LENGTH_SHORT).show()
                         btnCadastrar.isEnabled = true
                     }
             }
