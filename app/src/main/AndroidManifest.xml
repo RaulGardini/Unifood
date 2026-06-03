@@ -22,7 +22,6 @@
         <activity android:name=".EditarItemCardapioActivity"/>
         <activity android:name=".CardapioActivity"/>
         <activity android:name=".LojistaActivity"/>
-        <activity android:name=".FeedbackActivity"/>
         <activity android:name=".ConfigNotificacoesActivity"/>
         <activity android:name=".ChatBotActivity"/>
         <activity android:name=".CarrinhoActivity"/>
