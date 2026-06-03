@@ -29,8 +29,8 @@ class ChatBotActivity : AppCompatActivity() {
     private val auth = FirebaseAuth.getInstance()
 
     private val generativeModel = GenerativeModel(
-        modelName = "gemini-1.5-flash",
-        apiKey = ""
+        modelName = "gemini-2.0-flash",
+        apiKey = BuildConfig.GEMINI_API_KEY
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
